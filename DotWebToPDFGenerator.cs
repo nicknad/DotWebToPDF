@@ -3,12 +3,12 @@ using Microsoft.Extensions.Logging;
 
 namespace DotWebToPDF;
 
-public class PDFGenerator
+public class DotWebToPDFGenerator
 {
     internal readonly IServiceProvider services;
     internal readonly ILoggerFactory loggerFactory;
 
-    public PDFGenerator(IServiceProvider services, ILoggerFactory loggerFactory)
+    public DotWebToPDFGenerator(IServiceProvider services, ILoggerFactory loggerFactory)
     {
         this.services = services;
         this.loggerFactory = loggerFactory;
