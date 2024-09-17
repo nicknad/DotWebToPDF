@@ -7,16 +7,16 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DotWebToPDF;
 
-public static class PDFGeneratorExtension
+public static class DotWebToPDFGeneratorExtension
 {
     public static IServiceCollection AddDotWebToPDFGenerator(this IServiceCollection services)
     {
-        services.AddScoped<PDFGenerator>();
+        services.AddScoped<DotWebToPDFGenerator>();
 
         return services;
     }
 
-    public static async Task<byte[]> ToPDFAsync(this PDFGenerator self, string html, PagePdfOptions? pdfOptions = null)
+    public static async Task<byte[]> ToPDFAsync(this DotWebToPDFGenerator self, string html, PagePdfOptions? pdfOptions = null)
     {
         using var playwright = await Playwright.CreateAsync();
         await using var browser = await playwright.Chromium.LaunchAsync(new() { Headless = true });
@@ -27,7 +27,7 @@ public static class PDFGeneratorExtension
     }
 
     public static async Task<byte[]> ToPDFAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>
-        (this PDFGenerator self, ParameterView parameters, PagePdfOptions? pdfOptions = null) where TComponent : IComponent
+        (this DotWebToPDFGenerator self, ParameterView parameters, PagePdfOptions? pdfOptions = null) where TComponent : IComponent
     {
         Guard.IsNotNull(parameters);
 
