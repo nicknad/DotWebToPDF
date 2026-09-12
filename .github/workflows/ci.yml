@@ -32,4 +32,37 @@ jobs:
         run: dotnet format --verify-no-changes --no-restore
 
       - name: Test
-        run: dotnet test --no-build --configuration Release
+        run: dotnet test --no-build --configuration Release --filter "Category!=Integration"
+
+  integration:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      DOTWEBTOPDF_RUN_INTEGRATION: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Install Chromium
+        shell: pwsh
+        run: |
+          if ($IsLinux) {
+            ./src/DotWebToPDF/bin/Release/net8.0/playwright.ps1 install --with-deps chromium
+          } else {
+            ./src/DotWebToPDF/bin/Release/net8.0/playwright.ps1 install chromium
+          }
+
+      - name: Integration tests
+        run: dotnet test --no-build --configuration Release --filter "Category=Integration"
