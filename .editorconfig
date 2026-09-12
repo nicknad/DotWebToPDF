@@ -76,6 +76,15 @@ dotnet_style_prefer_inferred_tuple_names = true:suggestion
 dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
 dotnet_style_namespace_match_folder = false
 
+# Naming: private constants use PascalCase
+dotnet_naming_rule.private_const_fields_pascal_case.severity = warning
+dotnet_naming_rule.private_const_fields_pascal_case.symbols = private_const_fields
+dotnet_naming_rule.private_const_fields_pascal_case.style = pascal_case_style
+dotnet_naming_symbols.private_const_fields.applicable_kinds = field
+dotnet_naming_symbols.private_const_fields.applicable_accessibilities = private
+dotnet_naming_symbols.private_const_fields.required_modifiers = const
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
 # Naming: private fields use _camelCase
 dotnet_naming_rule.private_fields_underscore_camel_case.severity = warning
 dotnet_naming_rule.private_fields_underscore_camel_case.symbols = private_fields

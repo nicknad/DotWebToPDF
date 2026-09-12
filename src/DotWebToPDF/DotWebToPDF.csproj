@@ -4,6 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>DotWebToPdf</RootNamespace>
     <PackageId>DotWebToPDF</PackageId>
+    <Authors>nicknad</Authors>
+    <Copyright>Copyright (c) 2026 nicknad</Copyright>
     <Description>Generate PDF documents from HTML strings or Blazor components using Microsoft Playwright.</Description>
     <PackageTags>pdf;html;blazor;playwright;chromium</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -15,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
     <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
     <PackageReference Include="Microsoft.Playwright" />
   </ItemGroup>
 
